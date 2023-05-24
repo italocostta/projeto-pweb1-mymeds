@@ -8,7 +8,7 @@
   ],
   "pacientes": [
     {
-      "nome": "Ronaldo",
+      "nome": "Ronaldo20",
       "sobrenome": "",
       "senha": "",
       "email": "",
@@ -16,16 +16,6 @@
       "sexo": "",
       "cpf": "",
       "id": 1
-    },
-    {
-      "nome": "",
-      "sobrenome": "",
-      "senha": "",
-      "email": "",
-      "dataNascimento": "",
-      "sexo": "",
-      "cpf": "",
-      "id": 2
     }
   ],
   "comments": [

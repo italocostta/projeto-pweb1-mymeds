@@ -5,7 +5,7 @@ import { PacienteService } from 'src/app/shared/services/paciente.service';
 @Component({
   selector: 'app-listar-paciente',
   templateUrl: './listar-paciente.component.html',
-  styleUrls: ['./listar-paciente.component.scss']
+  styleUrls: ['./listar-paciente.component.scss'],
 })
 export class ListarPacienteComponent implements OnInit {
   pacientes: Paciente[] = [];
@@ -18,11 +18,11 @@ export class ListarPacienteComponent implements OnInit {
 
   obterPacientes(): void {
     this.pacienteService.listar().subscribe(
-      pacientesRetornados => {
+      (pacientesRetornados) => {
         this.pacientes = pacientesRetornados;
         console.log(this.pacientes);
       },
-      error => {
+      (error) => {
         console.error(error);
       }
     );
@@ -31,7 +31,9 @@ export class ListarPacienteComponent implements OnInit {
   excluir(pacienteARemover: Paciente): void {
     if (pacienteARemover.id) {
       this.pacienteService.apagar(pacienteARemover.id).subscribe(() => {
-        const index = this.pacientes.findIndex(paciente => paciente.id === pacienteARemover.id);
+        const index = this.pacientes.findIndex(
+          (paciente) => paciente.id === pacienteARemover.id
+        );
         if (index !== -1) {
           this.pacientes.splice(index, 1);
         }
@@ -41,7 +43,7 @@ export class ListarPacienteComponent implements OnInit {
 
   inserir(paciente: Paciente): void {
     if (paciente != null) {
-      this.pacienteService.inserir(paciente).subscribe(pacienteInserido => {
+      this.pacienteService.inserir(paciente).subscribe((pacienteInserido) => {
         this.pacientes.push(pacienteInserido);
       });
     }
