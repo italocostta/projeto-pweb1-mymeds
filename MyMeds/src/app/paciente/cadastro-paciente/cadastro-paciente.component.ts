@@ -22,7 +22,7 @@ export class CadastroPacienteComponent implements OnInit {
     private roteador: Router,
     private pacienteService: PacienteService
   ) {
-    this.pacienteCadastrado = new Paciente(1, '');
+    this.pacienteCadastrado = new Paciente('', '', '', '', '', '', '')
     const idParaEdicao = this.rotaAtual.snapshot.paramMap.get('id');
     if (idParaEdicao) {
       // editando
@@ -52,16 +52,30 @@ export class CadastroPacienteComponent implements OnInit {
 
   manter(): void {
     if (this.estahCadastrando && this.pacienteCadastrado) {
+      // Verificar se o ID já existe
+      const pacienteExistente = this.pacientes.find(p => p.id === this.pacienteCadastrado.id);
+      if (pacienteExistente) {
+        console.log('ID já existe. Não é possível cadastrar o paciente.');
+        return;
+      }
+  
+      // ID único, prosseguir com a inserção
       this.pacienteService.inserir(this.pacienteCadastrado).subscribe(
         paciente => {
           this.pacientes.push(paciente);
         }
       );
+    } else {
+      this.pacienteService.atualizar(this.pacienteCadastrado).subscribe(
+        paciente => {
+          // Atualização bem-sucedida
+        }
+      );
     }
-    this.pacienteCadastrado = new Paciente(1, '');
-    this.nomeBotaoManutencao = 'Cadastrar';
+  
     this.roteador.navigate(['listagempacientes']);
   }
+  
 
   atualizar(): void {
     if (this.pacienteCadastrado != null) {
