@@ -6,14 +6,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-cadastro-paciente',
   templateUrl: './cadastro-paciente.component.html',
-  styleUrls: ['./cadastro-paciente.component.scss']
+  styleUrls: ['./cadastro-paciente.component.scss'],
 })
 export class CadastroPacienteComponent implements OnInit {
-
   pacienteCadastrado: Paciente;
   estahCadastrando = true;
   nomeBotaoManutencao = 'Cadastrar';
-  IdPacienteEditado: any = "";
+  IdPacienteEditado: any = '';
 
   pacientes: Paciente[] = [];
 
@@ -22,15 +21,15 @@ export class CadastroPacienteComponent implements OnInit {
     private roteador: Router,
     private pacienteService: PacienteService
   ) {
-    this.pacienteCadastrado = new Paciente(1, '');
+    this.pacienteCadastrado = new Paciente('', '', '', '', '', '', '');
     const idParaEdicao = this.rotaAtual.snapshot.paramMap.get('id');
     if (idParaEdicao) {
       // editando
-      this.pacienteService.pesquisarPorId(+idParaEdicao).subscribe(
-        paciente => {
+      this.pacienteService
+        .pesquisarPorId(+idParaEdicao)
+        .subscribe((paciente) => {
           this.pacienteCadastrado = paciente;
-        }
-      );
+        });
 
       if (idParaEdicao) {
         this.estahCadastrando = false;
@@ -42,34 +41,47 @@ export class CadastroPacienteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pacienteService.listar().subscribe(
-      pacientesRetornados => {
-        this.pacientes = pacientesRetornados;
-      }
-    );
+    this.pacienteService.listar().subscribe((pacientesRetornados) => {
+      this.pacientes = pacientesRetornados;
+    });
     this.IdPacienteEditado = this.rotaAtual.snapshot.paramMap.get('id');
   }
 
   manter(): void {
     if (this.estahCadastrando && this.pacienteCadastrado) {
-      this.pacienteService.inserir(this.pacienteCadastrado).subscribe(
-        paciente => {
-          this.pacientes.push(paciente);
-        }
+      // Verificar se o ID já existe
+      const pacienteExistente = this.pacientes.find(
+        (p) => p.id === this.pacienteCadastrado.id
       );
+      if (pacienteExistente) {
+        console.log('ID já existe. Não é possível cadastrar o paciente.');
+        return;
+      }
+
+      // ID único, prosseguir com a inserção
+      this.pacienteService
+        .inserir(this.pacienteCadastrado)
+        .subscribe((paciente) => {
+          this.pacientes.push(paciente);
+        });
+    } else {
+      this.pacienteService
+        .atualizar(this.pacienteCadastrado)
+        .subscribe((paciente) => {
+          // Atualização bem-sucedida
+        });
     }
-    this.pacienteCadastrado = new Paciente(1, '');
-    this.nomeBotaoManutencao = 'Cadastrar';
+
     this.roteador.navigate(['listagempacientes']);
   }
 
   atualizar(): void {
     if (this.pacienteCadastrado != null) {
-      this.pacienteService.atualizar(this.pacienteCadastrado).subscribe(
-        paciente => {
+      this.pacienteService
+        .atualizar(this.pacienteCadastrado)
+        .subscribe((paciente) => {
           this.roteador.navigate(['listagempacientes']);
-        }
-      );
+        });
     }
   }
 }
