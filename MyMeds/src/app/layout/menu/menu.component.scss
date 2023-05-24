@@ -1,21 +1,34 @@
-.button-container {
+.menu-container {
   display: flex;
   align-items: center;
-  background-color: #f2f2f2;
+  background-color: cadetblue; /* Cor de fundo azul vibrante */
   padding: 10px;
-}
-
-.button-container button {
-  margin-right: 10px;
-  padding: 8px 16px;
-  background-color: #ccc;
-  border: none;
   border-radius: 4px;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-}
 
-.button-container button:hover {
-  background-color: #999;
+  .menu-button {
+    color: #fff; /* Cor do texto branco */
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2); /* Cor de fundo branco transparente ao passar o mouse */
+    }
+
+    &:focus {
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.2); /* Cor de fundo branco transparente ao focar */
+    }
+  }
+
+  .divider {
+    width: 1px;
+    height: 24px;
+    background-color: #fff; /* Cor da linha vertical branca */
+    margin: 0 10px;
+  }
 }
