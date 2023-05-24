@@ -1,1 +1,17 @@
-<h1>Chegou Aqui!</h1>
+<mat-card class="paciente-card">
+    <mat-card-header>
+      <mat-card-title>Listagem de Pacientes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngFor="let paciente of pacientes">
+        <p>Nome: {{ paciente.nome }}</p>
+        <p>Sobrenome: {{ paciente.sobrenome }}</p>
+        <p>CPF: {{ paciente.cpf }}</p>
+        <p>Email: {{ paciente.email }}</p>
+        <p>Data de Nascimento: {{ paciente.dataNascimento }}</p>
+        <p>Gênero: {{ paciente.sexo }}</p>
+        <!-- Exibir outros dados do paciente conforme necessário -->
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

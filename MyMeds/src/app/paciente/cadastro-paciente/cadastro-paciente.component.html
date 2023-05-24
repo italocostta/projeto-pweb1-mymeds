@@ -1,0 +1,48 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{ estahCadastrando ? 'Cadastro de Paciente' : 'Edição de Paciente' }}
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form #formPaciente="ngForm" (ngSubmit)="manter()">
+      <mat-form-field>
+        <input matInput placeholder="Nome" [(ngModel)]="pacienteCadastrado.nome" name="nome" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Sobrenome" [(ngModel)]="pacienteCadastrado.sobrenome" name="sobrenome" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="password" placeholder="Senha" [(ngModel)]="pacienteCadastrado.senha" name="senha" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="email" placeholder="Email" [(ngModel)]="pacienteCadastrado.email" name="email" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="date" placeholder="Data de Nascimento" [(ngModel)]="pacienteCadastrado.dataNascimento" name="dataNascimento" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Sexo</mat-label>
+        <mat-select [(ngModel)]="pacienteCadastrado.sexo" name="sexo" required>
+          <mat-option value="Masculino">Masculino</mat-option>
+          <mat-option value="Feminino">Feminino</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="CPF" [(ngModel)]="pacienteCadastrado.cpf" name="cpf" required>
+      </mat-form-field>
+
+      <div class="buttons-container">
+        <button mat-raised-button color="primary" type="submit">{{ nomeBotaoManutencao }}</button>
+        <button mat-raised-button color="warn" *ngIf="!estahCadastrando" (click)="atualizar()">Atualizar</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

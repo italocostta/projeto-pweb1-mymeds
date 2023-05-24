@@ -10,6 +10,9 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatMenuModule} from '@angular/material/menu';
 import { MenuComponent } from './menu/menu.component';
 import {RouterLink} from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatDividerModule } from '@angular/material/divider';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import {RouterLink} from '@angular/router';
     MatIconModule,
     MatBadgeModule,
     MatMenuModule,
-    RouterLink
+    RouterLink,
+    FlexLayoutModule,
+    MatDividerModule
   ],
   exports: [
     MenuComponent

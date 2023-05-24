@@ -1,7 +1,5 @@
-<div class="menu">
-    <button color="sucesso" mat-raised-button [matMenuTriggerFor]="menu">Menu</button>
-    <mat-menu #menu="matMenu">
-      <button [routerLink]="['cadastrousuario']" mat-menu-item>Cadastrar usuário</button>
-      <button [routerLink]="['listagemusuarios']" mat-menu-item>Listar Usuários</button>
-    </mat-menu>
+<div fxLayout="row" fxLayoutGap="10px" class="button-container">
+  <button [routerLink]="['cadastropaciente']" mat-menu-item>Cadastrar usuário</button>
+  <span class="divider">|</span>
+  <button [routerLink]="['listagempacientes']" mat-menu-item>Listar Usuários</button>
 </div>
