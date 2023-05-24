@@ -2,7 +2,7 @@ import {Paciente} from './paciente';
 
 export const pacientes: Array<Paciente> = [
   {
-    id: '1',
+    id: 1,
     nome: 'João',
     sobrenome: 'Silva',
     senha: '123456',
