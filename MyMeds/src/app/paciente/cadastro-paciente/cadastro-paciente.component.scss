@@ -1,14 +1,32 @@
 .card {
-  width: 400px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  width: 550px;
+  height: 700px;
+  bottom: 7rem;
+  left: 1270px;  
+  background: #3B655B;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+
+.retangulo2 {
+  position: absolute;
+  width: 770px;
+  height: 1010px;
+  left: 1150px;
+  background-color: #84f0d663;
+  border-radius: 15px;
 }
 
 .title {
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
+  font-family: "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 200px;
+  font-size: 40px;
+  line-height: 50px;
+  color: #FFFFFF;
+
 }
 
 .form-container {
@@ -31,6 +49,58 @@
 
 .buttons-container {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 10px;
+  position: absolute;
+  left: 235px;
+  top: 625px;
+  color: #3B655B;
+}
+
+
+.logo {
+  left: 300px;
+  top: 150px;
+  position: relative;
+}
+
+.medicine,
+.vector1,
+.vector2 {
+  position: absolute;
+}
+
+.medicine {
+  z-index: 3;
+  left: 150px;
+  top: 50px;
+}
+
+.vector1 {
+  z-index: 1;
+}
+
+.vector2 {
+  z-index: 2;
+  top: 100px; /* Ajuste o valor conforme necessário */
+  left: 10px; /* Ajuste o valor conforme necessário */
+}
+
+.nameLogo {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-end;
+  justify-content: center;
+  width: 1080px;
+  height: 1750px;
+
+  font-family: "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 400px;
+  font-size: 64px;
+  line-height: 95px;
+  color: #64AC9B;
 }

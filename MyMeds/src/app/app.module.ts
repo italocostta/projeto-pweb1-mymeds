@@ -14,10 +14,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import {LayoutModule} from './layout/layout.module';
 import {PacienteModule} from './paciente/paciente.module';
 import {HttpClientModule} from '@angular/common/http';
+import { MatListModule } from '@angular/material/list';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import {HttpClientModule} from '@angular/common/http';
     MatMenuModule,
     LayoutModule,
     PacienteModule,
-    HttpClientModule
+    HttpClientModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

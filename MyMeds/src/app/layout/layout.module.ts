@@ -12,6 +12,8 @@ import { MenuComponent } from './menu/menu.component';
 import {RouterLink} from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { MatDividerModule } from '@angular/material/divider';
     MatMenuModule,
     RouterLink,
     FlexLayoutModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSidenavModule,
+    MatListModule
   ],
   exports: [
     MenuComponent

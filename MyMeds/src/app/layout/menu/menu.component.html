@@ -1,9 +1,16 @@
-<div fxLayout="row" fxLayoutGap="10px" class="menu-container">
-  <button [routerLink]="['cadastropaciente']" mat-menu-item class="menu-button">
-    Cadastrar Usuário
+<div class="menu-container">
+  <button mat-icon-button class="menu-toggle" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
   </button>
-  <div class="divider"></div>
-  <button [routerLink]="['listagempacientes']" mat-menu-item class="menu-button">
-    Listar Usuários
-  </button>
+  <mat-nav-list class="menu-list" [class.open]="isMenuOpen">
+    <a [routerLink]="['cadastropaciente']" (click)="closeMenu()" mat-list-item class="menu-item">
+      <mat-icon>add</mat-icon>
+      <span>Cadastrar Paciente</span>
+    </a>
+    <div class="divider"></div>
+    <a [routerLink]="['listagempacientes']" (click)="closeMenu()" mat-list-item class="menu-item">
+      <mat-icon>list</mat-icon>
+      <span>Listar Pacientes</span>
+    </a>
+  </mat-nav-list>
 </div>
