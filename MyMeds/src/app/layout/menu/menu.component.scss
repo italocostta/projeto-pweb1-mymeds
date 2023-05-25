@@ -10,14 +10,14 @@
   z-index: 9999;
 }
 
-.menu-toggle {
+.menu-toggle  {
   color: #FFFFFF;
 }
 
 .menu-list {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 350px;
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -41,4 +41,26 @@
 
 .menu-list.open {
   height: auto;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.menu-button-social,
+.menu-button-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  margin-bottom: 10px;
+}
+
+.social-icon,
+.info-icon {
+  color: #FFFFFF;
+  font-size: 24px;
 }

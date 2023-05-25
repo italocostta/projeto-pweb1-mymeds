@@ -12,6 +12,7 @@
         <p class="card-text">Sexo: {{ paciente.sexo }}</p>
         <p class="card-text">CPF: {{ paciente.cpf }}</p>
       </mat-card-content>
+      
       <mat-card-actions>
         <button mat-button [routerLink]="['/editapaciente', paciente.id]">
           <mat-icon>edit</mat-icon>
