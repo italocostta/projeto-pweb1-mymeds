@@ -15,6 +15,7 @@ import {LayoutModule} from './layout/layout.module';
 import {PacienteModule} from './paciente/paciente.module';
 import {HttpClientModule} from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
+import { FirestoreModule } from './firestore/firestore.module';
 
 
 
@@ -38,7 +39,8 @@ import { MatListModule } from '@angular/material/list';
     LayoutModule,
     PacienteModule,
     HttpClientModule,
-    MatListModule
+    MatListModule,
+    FirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

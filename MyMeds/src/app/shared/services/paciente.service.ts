@@ -25,11 +25,11 @@ export class PacienteService {
     );
   }
 
-  apagar(id: number): Observable<Paciente> {
+  apagar(id: string): Observable<Paciente> {
     return this.httpClient.delete<Paciente>(`${this.URL_pacientes}/${id}`);
   }
 
-  pesquisarPorId(id: number): Observable<Paciente> {
+  pesquisarPorId(id: string): Observable<Paciente> {
     return this.httpClient.get<Paciente>(`${this.URL_pacientes}/${id}`);
   }
 }

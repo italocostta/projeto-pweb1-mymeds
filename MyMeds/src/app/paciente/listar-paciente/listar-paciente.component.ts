@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Paciente } from 'src/app/shared/modelo/paciente';
 import { PacienteService } from 'src/app/shared/services/paciente.service';
+import { PacienteFirestoreService } from 'src/app/shared/services/paciente-firestore.service';
 
 @Component({
   selector: 'app-listar-paciente',
@@ -9,15 +10,16 @@ import { PacienteService } from 'src/app/shared/services/paciente.service';
 })
 export class ListarPacienteComponent implements OnInit {
   pacientes: Paciente[] = [];
+  pacientesMaioresIdade = false;
 
-  constructor(private pacienteService: PacienteService) {}
+  constructor(private PacienteFirestoreService: PacienteFirestoreService) {}
 
   ngOnInit(): void {
     this.obterPacientes();
   }
 
   obterPacientes(): void {
-    this.pacienteService.listar().subscribe(
+    this.PacienteFirestoreService.listar().subscribe(
       (pacientesRetornados) => {
         this.pacientes = pacientesRetornados;
         console.log(this.pacientes);
@@ -30,7 +32,7 @@ export class ListarPacienteComponent implements OnInit {
 
   excluir(pacienteARemover: Paciente): void {
     if (pacienteARemover.id) {
-      this.pacienteService.apagar(pacienteARemover.id).subscribe(() => {
+      this.PacienteFirestoreService.apagar(pacienteARemover.id).subscribe(() => {
         const index = this.pacientes.findIndex(
           (paciente) => paciente.id === pacienteARemover.id
         );
@@ -43,17 +45,39 @@ export class ListarPacienteComponent implements OnInit {
 
   inserir(paciente: Paciente): void {
     if (paciente != null) {
-      this.pacienteService.inserir(paciente).subscribe((pacienteInserido) => {
-        this.pacientes.push(pacienteInserido);
+      this.PacienteFirestoreService.inserir(paciente).subscribe((pacienteInserido) => {
+        this.pacientes.push(pacienteInserido as Paciente);
       });
     }
   }
 
   atualizar(paciente: Paciente): void {
     if (paciente != null) {
-      this.pacienteService.atualizar(paciente).subscribe(() => {
+      this.PacienteFirestoreService.atualizar(paciente).subscribe(() => {
         this.obterPacientes();
       });
+    }
+  }
+
+  atualizarLista(): void {
+    if (this.pacientesMaioresIdade) {
+      this.PacienteFirestoreService.listarMaioresDeIdade().subscribe(
+        (pacientesRetornados) => {
+          this.pacientes = pacientesRetornados;
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    } else {
+      this.PacienteFirestoreService.listar().subscribe(
+        (pacientesRetornados) => {
+          this.pacientes = pacientesRetornados;
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
     }
   }
 }

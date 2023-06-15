@@ -7,6 +7,6 @@ export class Paciente {
     public dataNascimento: string,
     public sexo: string,
     public cpf: string,
-    public id?: number
+    public id?: string
   ) {}
 }

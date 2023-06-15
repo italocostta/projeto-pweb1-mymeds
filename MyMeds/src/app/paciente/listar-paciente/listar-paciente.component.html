@@ -1,4 +1,8 @@
 <div class="patient-list" fxLayout="row" fxLayoutGap="">
+  <mat-slide-toggle [(ngModel)]="pacientesMaioresIdade" (change)="atualizarLista()">
+    Mostrar apenas pacientes maiores de idade
+  </mat-slide-toggle>
+
   <div class="paciente-card" *ngFor="let paciente of pacientes">
     <mat-card class="patient-card">
       <mat-card-header class="card-header">

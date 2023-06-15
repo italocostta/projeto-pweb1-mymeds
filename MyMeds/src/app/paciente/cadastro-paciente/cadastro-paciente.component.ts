@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Paciente } from 'src/app/shared/modelo/paciente';
 import { PacienteService } from 'src/app/shared/services/paciente.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PacienteFirestoreService } from 'src/app/shared/services/paciente-firestore.service';
 
 @Component({
   selector: 'app-cadastro-paciente',
@@ -19,14 +20,14 @@ export class CadastroPacienteComponent implements OnInit {
   constructor(
     private rotaAtual: ActivatedRoute,
     private roteador: Router,
-    private pacienteService: PacienteService
+    private PacienteFirestoreService: PacienteFirestoreService
   ) {
     this.pacienteCadastrado = new Paciente('', '', '', '', '', '', '');
     const idParaEdicao = this.rotaAtual.snapshot.paramMap.get('id');
     if (idParaEdicao) {
       // editando
-      this.pacienteService
-        .pesquisarPorId(+idParaEdicao)
+      this.PacienteFirestoreService
+        .pesquisarPorId(idParaEdicao)
         .subscribe((paciente) => {
           this.pacienteCadastrado = paciente;
         });
@@ -41,7 +42,7 @@ export class CadastroPacienteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pacienteService.listar().subscribe((pacientesRetornados) => {
+    this.PacienteFirestoreService.listar().subscribe((pacientesRetornados) => {
       this.pacientes = pacientesRetornados;
     });
     this.IdPacienteEditado = this.rotaAtual.snapshot.paramMap.get('id');
@@ -59,13 +60,13 @@ export class CadastroPacienteComponent implements OnInit {
       }
 
       // ID único, prosseguir com a inserção
-      this.pacienteService
+      this.PacienteFirestoreService
         .inserir(this.pacienteCadastrado)
         .subscribe((paciente) => {
-          this.pacientes.push(paciente);
-        });
+          this.pacientes.push(paciente as Paciente);
+    });
     } else {
-      this.pacienteService
+      this.PacienteFirestoreService
         .atualizar(this.pacienteCadastrado)
         .subscribe((paciente) => {
           // Atualização bem-sucedida
@@ -77,7 +78,7 @@ export class CadastroPacienteComponent implements OnInit {
 
   atualizar(): void {
     if (this.pacienteCadastrado != null) {
-      this.pacienteService
+      this.PacienteFirestoreService
         .atualizar(this.pacienteCadastrado)
         .subscribe((paciente) => {
           this.roteador.navigate(['listagempacientes']);
