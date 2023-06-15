@@ -22,7 +22,7 @@ export class CadastroPacienteComponent implements OnInit {
     private roteador: Router,
     private PacienteFirestoreService: PacienteFirestoreService
   ) {
-    this.pacienteCadastrado = new Paciente('', '', '', '', '', '', '');
+    this.pacienteCadastrado = new Paciente('', '', '', '', '', '', '', undefined);
     const idParaEdicao = this.rotaAtual.snapshot.paramMap.get('id');
     if (idParaEdicao) {
       // editando

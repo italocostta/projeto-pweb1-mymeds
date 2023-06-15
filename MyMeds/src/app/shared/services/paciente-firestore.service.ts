@@ -37,7 +37,7 @@ export class PacienteFirestoreService {
   atualizar(paciente: Paciente): Observable<void> {
     const id = paciente.id;
     delete paciente.id;
-    return from(this.colecaoPaciente.doc(paciente.id).update(Object.assign({...paciente})));
+    return from(this.colecaoPaciente.doc(id).update(Object.assign({...paciente})));
   }
 
   listarMaioresDeIdade(): Observable<Paciente[]> {

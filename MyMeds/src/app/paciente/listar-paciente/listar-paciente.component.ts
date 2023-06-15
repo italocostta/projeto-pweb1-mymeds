@@ -62,22 +62,10 @@ export class ListarPacienteComponent implements OnInit {
   atualizarLista(): void {
     if (this.pacientesMaioresIdade) {
       this.PacienteFirestoreService.listarMaioresDeIdade().subscribe(
-        (pacientesRetornados) => {
-          this.pacientes = pacientesRetornados;
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-    } else {
+        pacientes => this.pacientes = pacientes);
+    }else {
       this.PacienteFirestoreService.listar().subscribe(
-        (pacientesRetornados) => {
-          this.pacientes = pacientesRetornados;
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+        pacientes => this.pacientes = pacientes);
     }
   }
 }
