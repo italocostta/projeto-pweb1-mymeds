@@ -1,6 +1,6 @@
 <div class="patient-list" fxLayout="row" fxLayoutGap="">
-  <mat-slide-toggle [(ngModel)]="pacientesMaioresIdade" (change)="atualizarLista()">
-    <div>ASUDHASUHDUASHDUHASDUHSAUHD</div>
+  <mat-slide-toggle class="maiores-toggle" [(ngModel)]="pacientesMaioresIdade" (change)="atualizarLista()">
+    Somente maiores de idade
   </mat-slide-toggle>
 
   <div class="paciente-card" *ngFor="let paciente of pacientes">

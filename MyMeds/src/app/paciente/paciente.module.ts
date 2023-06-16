@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente.component';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -31,7 +31,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatBadgeModule,
     FlexModule,
     RouterLink,
-    MatSelectModule
+    MatSelectModule,
+    MatSlideToggleModule
   ],
   exports: [ListarPacienteComponent,CadastroPacienteComponent ]
 })
