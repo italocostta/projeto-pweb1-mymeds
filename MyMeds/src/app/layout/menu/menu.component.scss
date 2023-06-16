@@ -1,4 +1,14 @@
-
+.menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 50px;
+  background-color: #3B655B;
+  padding: 10px;
+  transition: transform 0.3s;
+  z-index: 9999;
+}
 
 .menu-toggle  {
   color: #FFFFFF;

@@ -1,6 +1,6 @@
 <div class="patient-list" fxLayout="row" fxLayoutGap="">
   <mat-slide-toggle class="maiores-toggle" [(ngModel)]="pacientesMaioresIdade" (change)="atualizarLista()">
-    Somente maiores de idade
+    Mostrar somente maiores de idade
   </mat-slide-toggle>
 
   <div class="paciente-card" *ngFor="let paciente of pacientes">
@@ -13,7 +13,7 @@
         <p class="card-text">Sobrenome: {{ paciente.sobrenome }}</p>
         <p class="card-text">Email: {{ paciente.email }}</p>
         <p class="card-text">Idade: {{ paciente.idade }}</p>
-        <p class="card-text">Data de Nascimento: {{ paciente.dataNascimento }}</p>
+        <!-- <p class="card-text">Data de Nascimento: {{ paciente.dataNascimento }}</p> -->
         <p class="card-text">Sexo: {{ paciente.sexo }}</p>
         <p class="card-text">CPF: {{ paciente.cpf }}</p>
       </mat-card-content>
