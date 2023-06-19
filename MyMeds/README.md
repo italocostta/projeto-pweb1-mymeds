@@ -1,27 +1,21 @@
-# MyMeds
+# Título do Aplicativo: MyMeds
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
+## Descrição do Problema
 
-## Development server
+Esquecer de tomar medicamentos diariamente pode ser um problema comum para muitas pessoas, especialmente para aquelas que têm que tomar vários medicamentos diferentes em horários diferentes ao longo do dia. Isso pode resultar em uma diminuição da eficácia do tratamento e, em alguns casos, até mesmo levar a complicações de saúde. A falta de adesão ao tratamento pode ocorrer por várias razões, como um estilo de vida agitado, dificuldade em lembrar de tomar os medicamentos ou a falta de compreensão dos efeitos do medicamento. Esses fatores podem ser ainda mais agravados em idosos ou pacientes com doenças crônicas que têm dificuldade em gerenciar seu próprio tratamento.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Solução a ser implementada
 
-## Code scaffolding
+Uma solução para esse problema seria criar um aplicativo ou dispositivo que ajude a lembrar os pacientes de tomar seus medicamentos em horários específicos, além de monitorar sua adesão ao tratamento e fornecer lembretes de recarga de medicamentos quando necessário.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Requisitos Funcionais
 
-## Build
+- Registro de medicamentos: O sistema deve permitir que o usuário registre os medicamentos que precisa tomar, incluindo nome, dose e frequência.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Agendamento de lembretes: O sistema deve permitir que o usuário agende lembretes para tomar seus medicamentos em horários específicos do dia.
 
-## Running unit tests
+- Acesso remoto: O sistema deve permitir que os usuários acessem seus registros de medicamentos e monitoramento de adesão ao tratamento remotamente por meio de dispositivos móveis ou da web.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Compatibilidade com diferentes tipos de medicamentos: O sistema deve ser capaz de lidar com diferentes tipos de medicamentos, como comprimidos, cápsulas, xaropes, injeções, entre outros.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Relatórios de adesão ao tratamento: O sistema deve permitir que os usuários gerem relatórios sobre sua adesão ao tratamento, que podem ser compartilhados com seus médicos ou cuidadores.
