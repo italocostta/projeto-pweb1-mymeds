@@ -3,17 +3,19 @@ import { Paciente } from 'src/app/shared/modelo/paciente';
 import { PacienteService } from 'src/app/shared/services/paciente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacienteFirestoreService } from 'src/app/shared/services/paciente-firestore.service';
-
+import { pageTransitionAnimation } from 'src/app/animations/page-trasition.animation';
 @Component({
   selector: 'app-cadastro-paciente',
   templateUrl: './cadastro-paciente.component.html',
   styleUrls: ['./cadastro-paciente.component.scss'],
+  animations: [pageTransitionAnimation],
 })
 export class CadastroPacienteComponent implements OnInit {
   pacienteCadastrado: Paciente;
   estahCadastrando = true;
   nomeBotaoManutencao = 'Cadastrar';
   IdPacienteEditado: any = '';
+  animationName: string = 'CadastroPaciente';
 
   pacientes: Paciente[] = [];
 
@@ -46,6 +48,7 @@ export class CadastroPacienteComponent implements OnInit {
       this.pacientes = pacientesRetornados;
     });
     this.IdPacienteEditado = this.rotaAtual.snapshot.paramMap.get('id');
+    this.animationName = this.rotaAtual.snapshot.data['animation'];
   }
 
   manter(): void {

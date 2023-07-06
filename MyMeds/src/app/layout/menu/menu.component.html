@@ -1,33 +1,40 @@
 <div class="menu-container">
-  <button mat-icon-button class="menu-toggle" (click)="toggleMenu()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <mat-nav-list class="menu-list" [class.open]="isMenuOpen">
-    <a [routerLink]="['cadastropaciente']" (click)="closeMenu()" mat-list-item class="menu-item">
-      <mat-icon>add</mat-icon>
-      <span>Cadastrar Paciente</span>
-    </a>
-    <a [routerLink]="['']" (click)="closeMenu()" mat-list-item class="menu-item">
-      <mat-icon>add</mat-icon>
-      <span>Cadastrar Médico(a)/Cuidador(a)</span>
-    </a>
-    <a [routerLink]="['']" (click)="closeMenu()" mat-list-item class="menu-item">
-      <mat-icon>add</mat-icon>
-      <span>Cadastrar medicamentos</span>
-    </a>
-    <div class="divider"></div>
-    <a [routerLink]="['listagempacientes']" (click)="closeMenu()" mat-list-item class="menu-item">
-      <mat-icon>list</mat-icon>
-      <span>Listar Pacientes</span>
-    </a>
-  </mat-nav-list>
 
-  <div class="menu-buttons">
-    <div class="menu-button-social">
-      <mat-icon class="social-icon">group</mat-icon>  
-    </div>
-    <div class="menu-button-info">
-      <mat-icon class="info-icon">info</mat-icon>
-    </div>
+    <a [routerLink]="['/']" (click)="closeMenu()" mat-list-item class="menu-item">
+      <mat-icon>home</mat-icon>
+      <!-- <span>Home</span> -->
+    </a>
+    
+  
+    <button mat-icon-button class="menu-toggle" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-nav-list class="menu-list" [class.open]="isMenuOpen">
+      <a [routerLink]="['cadastropaciente']" (click)="closeMenu()" mat-list-item class="menu-item">
+        <mat-icon>add</mat-icon>
+        <span>Cadastrar Paciente</span>
+      </a>
+      <a [routerLink]="['']" (click)="closeMenu()" mat-list-item class="menu-item">
+        <mat-icon>add</mat-icon>
+        <span>Cadastrar Médico(a)/Cuidador(a)</span>
+      </a>
+      <a [routerLink]="['']" (click)="closeMenu()" mat-list-item class="menu-item">
+        <mat-icon>add</mat-icon>
+        <span>Cadastrar medicamentos</span>
+      </a>
+      <div class="divider"></div>
+      <a [routerLink]="['listagempacientes']" (click)="closeMenu()" mat-list-item class="menu-item">
+        <mat-icon>list</mat-icon>
+        <span>Listar Pacientes</span>
+      </a>
+    </mat-nav-list>
+  
+    <!-- <div class="menu-buttons">
+      <div class="menu-button-social">
+        <mat-icon class="social-icon">group</mat-icon>
+      </div>
+      <div class="menu-button-info">
+        <mat-icon class="info-icon">info</mat-icon>
+      </div>
+    </div> -->
   </div>
-</div>

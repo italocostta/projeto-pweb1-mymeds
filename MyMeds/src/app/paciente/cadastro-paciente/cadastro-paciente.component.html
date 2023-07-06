@@ -1,3 +1,4 @@
+<div [@pageTransition]="animationName">
 <div class="logo">
   <div class="medicine"><img src="./assets/Medicine.svg" alt="Medicine"></div>
   <div class="vector1"><img src="./assets/Vector1.svg" alt="Vector1"></div>
@@ -43,6 +44,7 @@
         <mat-select [(ngModel)]="pacienteCadastrado.sexo" name="sexo" required>
           <mat-option value="Masculino">Masculino</mat-option>
           <mat-option value="Feminino">Feminino</mat-option>
+          <mat-option value="Não Informar">Não Informar</mat-option>
         </mat-select>
       </mat-form-field>
       
@@ -61,3 +63,4 @@
 <mat-card-footer class="nameLogo">MyMeds</mat-card-footer>
 
 <mat-card class="retangulo2"></mat-card>
+</div>

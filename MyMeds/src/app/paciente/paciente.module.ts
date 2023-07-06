@@ -13,6 +13,7 @@ import { RouterLink } from '@angular/router';
 import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { PipesModule } from '../pipes/pipes.module';	
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     FlexModule,
     RouterLink,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    PipesModule,
   ],
   exports: [ListarPacienteComponent,CadastroPacienteComponent ]
 })

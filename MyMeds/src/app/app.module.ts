@@ -16,12 +16,15 @@ import {PacienteModule} from './paciente/paciente.module';
 import {HttpClientModule} from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { FirestoreModule } from './firestore/firestore.module';
+import { HomePageComponent } from './home-page/home-page.component';
+import { PipesModule } from './pipes/pipes.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomePageComponent,
     
   ],
   imports: [
@@ -40,7 +43,8 @@ import { FirestoreModule } from './firestore/firestore.module';
     PacienteModule,
     HttpClientModule,
     MatListModule,
-    FirestoreModule
+    FirestoreModule,
+    PipesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
