@@ -1,4 +1,4 @@
-<!-- <div class="menu-container">
+<div class="menu-container">
   <button mat-icon-button class="menu-toggle" (click)="toggleMenu()">
     <mat-icon>menu</mat-icon>
   </button>
@@ -7,7 +7,7 @@
       <mat-icon>add</mat-icon>
       <span>Cadastrar Paciente</span>
     </a>
-    <a [routerLink]="['']" (click)="closeMenu()" mat-list-item class="menu-item">
+    <a [routerLink]="['cadastromedico']" (click)="closeMenu()" mat-list-item class="menu-item">
       <mat-icon>add</mat-icon>
       <span>Cadastrar Médico(a)/Cuidador(a)</span>
     </a>
@@ -15,6 +15,10 @@
     <a [routerLink]="['listagempacientes']" (click)="closeMenu()" mat-list-item class="menu-item">
       <mat-icon>list</mat-icon>
       <span>Listar Pacientes</span>
+    </a>
+    <a [routerLink]="['listagemmedicos']" (click)="closeMenu()" mat-list-item class="menu-item">
+      <mat-icon>list</mat-icon>
+      <span>Listar Médicos</span>
     </a>
   </mat-nav-list>
 
@@ -26,4 +30,4 @@
       <mat-icon class="info-icon">info</mat-icon>
     </div>
   </div>
-</div> -->
+</div>

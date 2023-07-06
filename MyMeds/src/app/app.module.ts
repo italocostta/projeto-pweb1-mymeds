@@ -43,7 +43,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     HttpClientModule,
     MatListModule,
     FirestoreModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MedicoModule,
+    PacienteModule,
+    LayoutModule
   ],
   providers: [
     {
