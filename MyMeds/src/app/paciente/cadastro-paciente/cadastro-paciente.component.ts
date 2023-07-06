@@ -3,6 +3,8 @@ import { Paciente } from 'src/app/shared/modelo/paciente';
 import { PacienteService } from 'src/app/shared/services/paciente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PacienteFirestoreService } from 'src/app/shared/services/paciente-firestore.service';
+import { IMensagem } from 'src/app/shared/modelo/IMensagem';
+import { MensagemService } from 'src/app/shared/services/mensagem.service';
 
 @Component({
   selector: 'app-cadastro-paciente',
@@ -18,6 +20,7 @@ export class CadastroPacienteComponent implements OnInit {
   pacientes: Paciente[] = [];
 
   constructor(
+    private mensagemService: IMensagem,
     private rotaAtual: ActivatedRoute,
     private roteador: Router,
     private PacienteFirestoreService: PacienteFirestoreService
@@ -55,7 +58,7 @@ export class CadastroPacienteComponent implements OnInit {
         (p) => p.id === this.pacienteCadastrado.id
       );
       if (pacienteExistente) {
-        console.log('ID já existe. Não é possível cadastrar o paciente.');
+        this.mensagemService.erro('Paciente já cadastrado!');
         return;
       }
 
@@ -64,12 +67,13 @@ export class CadastroPacienteComponent implements OnInit {
         .inserir(this.pacienteCadastrado)
         .subscribe((paciente) => {
           this.pacientes.push(paciente as Paciente);
+          this.mensagemService.sucesso('Paciente cadastrado com sucesso!');
     });
     } else {
       this.PacienteFirestoreService
         .atualizar(this.pacienteCadastrado)
         .subscribe((paciente) => {
-          // Atualização bem-sucedida
+          this.mensagemService.sucesso('Paciente atualizado com sucesso!');
         });
     }
 
