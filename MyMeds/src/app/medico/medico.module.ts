@@ -1,5 +1,5 @@
-import { ListarPacienteComponent } from './listar-paciente/listar-paciente.component';
-import { CadastroPacienteComponent } from './cadastro-paciente/cadastro-paciente.component';
+import { CadastroMedicoComponent } from './cadastro-medico/cadastro-medico.component';
+import { ListarMedicoComponent } from './listar-medico/listar-medico.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -16,10 +16,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
-  declarations: [
-    ListarPacienteComponent,
-    CadastroPacienteComponent,
-  ],
+  declarations: [CadastroMedicoComponent, ListarMedicoComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -34,6 +31,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSelectModule,
     MatSlideToggleModule
   ],
-  exports: [ListarPacienteComponent,CadastroPacienteComponent ]
+  exports: [ListarMedicoComponent, CadastroMedicoComponent]
 })
-export class PacienteModule { }
+export class MedicoModule { }

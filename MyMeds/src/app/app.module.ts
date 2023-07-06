@@ -13,9 +13,13 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatMenuModule} from '@angular/material/menu';
 import {LayoutModule} from './layout/layout.module';
 import {PacienteModule} from './paciente/paciente.module';
+import { MedicoModule } from './medico/medico.module';
 import {HttpClientModule} from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { FirestoreModule } from './firestore/firestore.module';
+import { MensagemService } from './shared/services/mensagem.service';
+import { IMensagem } from './shared/modelo/IMensagem';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -36,13 +40,20 @@ import { FirestoreModule } from './firestore/firestore.module';
     MatIconModule,
     MatBadgeModule,
     MatMenuModule,
-    LayoutModule,
-    PacienteModule,
     HttpClientModule,
     MatListModule,
-    FirestoreModule
+    FirestoreModule,
+    MatSnackBarModule,
+    MedicoModule,
+    PacienteModule,
+    LayoutModule
   ],
-  providers: [],
+  providers: [
+    {
+    provide: IMensagem,
+    useClass: MensagemService
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
