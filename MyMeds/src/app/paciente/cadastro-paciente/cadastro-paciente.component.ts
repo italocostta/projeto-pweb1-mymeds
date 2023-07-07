@@ -60,6 +60,7 @@ export class CadastroPacienteComponent implements OnInit {
   ngOnInit(): void {
     this.pacienteService.listar().subscribe((pacientesRetornados) => {
       this.pacientes = pacientesRetornados;
+      console.log('Estou aqui', pacientesRetornados)
     });
     this.IdPacienteEditado = this.rotaAtual.snapshot.paramMap.get('id');
     this.animationName = this.rotaAtual.snapshot.data['animation'];    

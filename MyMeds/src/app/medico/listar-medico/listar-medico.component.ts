@@ -15,7 +15,7 @@ export class ListarMedicoComponent implements OnInit {
   medicosMaioresIdade = false;
   animationName: string = 'ListarMedico';
 
-  constructor(private rotaAtual: ActivatedRoute, private MedicoService: MedicoService) {}
+  constructor(private rotaAtual: ActivatedRoute, private medicoService: MedicoService) {}
 
   ngOnInit(): void {
     this.obterMedicos();
@@ -23,7 +23,7 @@ export class ListarMedicoComponent implements OnInit {
   }
 
   obterMedicos(): void {
-    this.MedicoService.listar().subscribe(
+    this.medicoService.listar().subscribe(
       (medicosRetornados) => {
         this.medicos = medicosRetornados;
         console.log(this.medicos);
@@ -36,7 +36,7 @@ export class ListarMedicoComponent implements OnInit {
 
   excluir(medicoARemover: Medico): void {
     if (medicoARemover.id) {
-      this.MedicoService.apagar(medicoARemover.id).subscribe(() => {
+      this.medicoService.apagar(medicoARemover.id).subscribe(() => {
         const index = this.medicos.findIndex(
           (medico) => medico.id === medicoARemover.id
         );
@@ -49,7 +49,7 @@ export class ListarMedicoComponent implements OnInit {
 
   inserir(medico: Medico): void {
     if (medico != null) {
-      this.MedicoService.inserir(medico).subscribe((medicoInserido) => {
+      this.medicoService.inserir(medico).subscribe((medicoInserido) => {
         this.medicos.push(medicoInserido as Medico);
       });
     }
@@ -57,7 +57,7 @@ export class ListarMedicoComponent implements OnInit {
 
   atualizar(medico: Medico): void {
     if (medico != null) {
-      this.MedicoService.atualizar(medico).subscribe(() => {
+      this.medicoService.atualizar(medico).subscribe(() => {
         this.obterMedicos();
       });
     }
@@ -68,7 +68,7 @@ export class ListarMedicoComponent implements OnInit {
     //   this.MedicoFirestoreService.listarMaioresDeIdade().subscribe(
     //     medicos => this.medicos = medicos);
     // }else {
-      this.MedicoService.listar().subscribe(
+      this.medicoService.listar().subscribe(
         medicos => this.medicos = medicos);
     
   }

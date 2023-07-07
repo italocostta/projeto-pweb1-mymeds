@@ -56,13 +56,13 @@ export class ListarPacienteComponent implements OnInit {
     }
   }
 
-  // atualizar(paciente: Paciente): void {
-  //   if (paciente != null) {
-  //     this.PacienteService.atualizar(paciente).subscribe(() => {
-  //       this.obterPacientes();
-  //     });
-  //   }
-  // }
+  atualizar(paciente: Paciente): void {
+    if (paciente != null) {
+      this.PacienteService.atualizar(paciente).subscribe(() => {
+        this.obterPacientes();
+      });
+    }
+  }
 
   // atualizarLista(): void {
   //   if (this.pacientesMaioresIdade) {
