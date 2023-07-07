@@ -93,7 +93,7 @@ export class CadastroMedicoComponent implements OnInit {
       this.medicoService
         .atualizar(this.medicoCadastrado)
         .subscribe((medico) => {
-          this.mensagemService.sucesso('Medico atualizado com sucesso!');
+          this.mensagemService.sucesso('Medico editado com sucesso!');
         });
     }
 

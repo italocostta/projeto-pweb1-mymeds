@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PacienteFirestoreService } from 'src/app/shared/services/paciente-firestore.service';
 import { pageTransitionAnimation } from 'src/app/animations/page-transition.animation';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { IMensagem } from 'src/app/shared/modelo/IMensagem';
 
 @Component({
   selector: 'app-cadastro-paciente',
@@ -28,6 +29,7 @@ export class CadastroPacienteComponent implements OnInit {
     private roteador: Router,
     private pacienteService: PacienteService,
     private formBuilder: FormBuilder,
+    private mensagemService: IMensagem
   ) {
     this.pacienteCadastrado = new Paciente();
     const idParaEdicao = this.rotaAtual.snapshot.paramMap.get('id');
@@ -82,12 +84,13 @@ export class CadastroPacienteComponent implements OnInit {
         .inserir(this.pacienteCadastrado)
         .subscribe((paciente) => {
           this.pacientes.push(paciente as Paciente);
+          this.mensagemService.sucesso('Paciente cadastrado com sucesso!');
     });
     } else {
       this.pacienteService
         .atualizar(this.pacienteCadastrado)
         .subscribe((paciente) => {
-          // Atualização bem-sucedida
+          this.mensagemService.sucesso('Paciente editado com sucesso!');
         });
     }
 
