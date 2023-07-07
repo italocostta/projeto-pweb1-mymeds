@@ -1,1 +1,33 @@
-<p>listar-medico works!</p>
+<div [@pageTransition]="animationName">
+<div class="medico-list" fxLayout="row" fxLayoutGap="">
+    <!-- <mat-slide-toggle class="maiores-toggle" [(ngModel)]="pacientesMaioresIdade" (change)="atualizarLista()">
+      Mostrar somente maiores de idade
+    </mat-slide-toggle> -->
+  
+    <div class="medico-card" *ngFor="let medico of medicos">
+      <mat-card class="patient-card">
+        <mat-card-header class="card-header">
+          <mat-card-title>Medico</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="card-text">Nome: {{ medico.nome }}</p>
+          <p class="card-text">Sobrenome: {{ medico.sobrenome }}</p>
+          <p class="card-text">Email: {{ medico.email }}</p>
+          <p class="card-text">Idade: {{ medico.idade }}</p>
+          <p class="card-text">Especialidade: {{ medico.especialidade }}</p>
+          <p class="card-text">Sexo: {{ medico.sexo }}</p>
+          <p class="card-text">CRM: {{ medico.crm }}</p>
+        </mat-card-content>
+        
+        <mat-card-actions>
+          <button mat-button [routerLink]="['/editamedico', medico.id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-button (click)="excluir(medico)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

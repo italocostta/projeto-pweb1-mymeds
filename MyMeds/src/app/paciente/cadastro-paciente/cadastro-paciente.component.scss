@@ -50,12 +50,16 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 10px;
   gap: 10px;
   position: absolute;
-  left: 235px;
-  top: 690px;
-  color: #3B655B;
+  left: 200px;
+  top: 670px;
+  background-color: #3B655B;
+  color: #ffffff;
+}
+
+.large-button {
+  padding: 30px 60px;
 }
 
 

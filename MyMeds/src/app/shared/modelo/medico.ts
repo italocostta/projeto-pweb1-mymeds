@@ -4,7 +4,7 @@ export class Medico {
       public sobrenome: string,
       public senha: string,
       public email: string,
-      public dataNascimento: string,
+      public especialidade: string,
       public sexo: string,
       public crm: string,
       public idade?: number,

@@ -1,0 +1,49 @@
+.logo {
+    left: 300px;
+    top: 150px;
+    position: relative;
+  }
+  
+  .medicine,
+  .vector1,
+  .vector2 {
+    position: absolute;
+  }
+  
+  .medicine {
+    z-index: 3;
+    left: 500px;
+    top: 70px;
+  }
+  
+  .vector1 {
+    z-index: 1;
+    top: 20px;
+    left: 350px;
+  }
+  
+  .vector2 {
+    z-index: 2;
+    top: 120px; /* Ajuste o valor conforme necessário */
+    left: 350px; /* Ajuste o valor conforme necessário */
+  }
+  
+  .nameLogo {
+    position: absolute;
+    top: 20px;
+    right: 1120px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    //height: 100vh;
+    //padding: 20px;
+    
+    font-family: "Helvetica Neue", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 95px;
+    color: #64AC9B;
+  }

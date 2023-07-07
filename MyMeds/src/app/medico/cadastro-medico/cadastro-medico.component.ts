@@ -5,17 +5,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MedicoFirestoreService } from 'src/app/shared/services/medico-firestore.service';
 import { IMensagem } from 'src/app/shared/modelo/IMensagem';
 import { MensagemService } from 'src/app/shared/services/mensagem.service';
+import { pageTransitionAnimation } from 'src/app/animations/page-transition.animation';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro-medico',
   templateUrl: './cadastro-medico.component.html',
   styleUrls: ['./cadastro-medico.component.scss'],
+  animations: [pageTransitionAnimation],
 })
 export class CadastroMedicoComponent implements OnInit {
   medicoCadastrado: Medico;
   estahCadastrando = true;
   nomeBotaoManutencao = 'Cadastrar';
   IdMedicoEditado: any = '';
+  animationName: string = 'CadastroMedico';
+  formMedico: FormGroup;
+  crmPattern = /^[A-Z]{2}-\d{4,6}$/;
 
   medicos: Medico[] = [];
 
@@ -23,7 +29,9 @@ export class CadastroMedicoComponent implements OnInit {
     private mensagemService: IMensagem,
     private rotaAtual: ActivatedRoute,
     private roteador: Router,
-    private MedicoFirestoreService: MedicoFirestoreService
+    private MedicoFirestoreService: MedicoFirestoreService,
+    private formBuilder: FormBuilder,
+    
   ) {
     this.medicoCadastrado = new Medico('', '', '', '', '', '', '', undefined);
     const idParaEdicao = this.rotaAtual.snapshot.paramMap.get('id');
@@ -42,6 +50,17 @@ export class CadastroMedicoComponent implements OnInit {
     } else {
       this.nomeBotaoManutencao = 'Cadastrar';
     }
+
+    this.formMedico = this.formBuilder.group({
+      nome: ['', Validators.required],
+      sobrenome: ['', Validators.required],
+      crm: ['', [Validators.required, Validators.pattern(this.crmPattern)]],
+      idade: ['', Validators.required],
+      especialidade: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(6)]],
+      // outros campos e validações
+    });
   }
 
   ngOnInit(): void {
@@ -49,6 +68,7 @@ export class CadastroMedicoComponent implements OnInit {
       this.medicos = medicosRetornados;
     });
     this.IdMedicoEditado = this.rotaAtual.snapshot.paramMap.get('id');
+    this.animationName = this.rotaAtual.snapshot.data['animation'];
   }
 
   manter(): void {

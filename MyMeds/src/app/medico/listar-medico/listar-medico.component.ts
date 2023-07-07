@@ -2,20 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { Medico } from 'src/app/shared/modelo/medico';
 import { MedicoService } from 'src/app/shared/services/medico.service';
 import { MedicoFirestoreService } from 'src/app/shared/services/medico-firestore.service';
-
+import { pageTransitionAnimation } from 'src/app/animations/page-transition.animation';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-listar-medico',
   templateUrl: './listar-medico.component.html',
   styleUrls: ['./listar-medico.component.scss'],
+  animations: [pageTransitionAnimation],
 })
 export class ListarMedicoComponent implements OnInit {
   medicos: Medico[] = [];
   medicosMaioresIdade = false;
+  animationName: string = 'ListarMedico';
 
-  constructor(private MedicoFirestoreService: MedicoFirestoreService) {}
+  constructor(private rotaAtual: ActivatedRoute, private MedicoFirestoreService: MedicoFirestoreService) {}
 
   ngOnInit(): void {
     this.obterMedicos();
+    this.animationName = this.rotaAtual.snapshot.data['animation'];
   }
 
   obterMedicos(): void {
@@ -60,12 +64,12 @@ export class ListarMedicoComponent implements OnInit {
   }
 
   atualizarLista(): void {
-    if (this.medicosMaioresIdade) {
-      this.MedicoFirestoreService.listarMaioresDeIdade().subscribe(
-        medicos => this.medicos = medicos);
-    }else {
+    // if (this.medicosMaioresIdade) {
+    //   this.MedicoFirestoreService.listarMaioresDeIdade().subscribe(
+    //     medicos => this.medicos = medicos);
+    // }else {
       this.MedicoFirestoreService.listar().subscribe(
         medicos => this.medicos = medicos);
-    }
+    
   }
 }

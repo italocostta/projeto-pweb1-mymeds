@@ -14,6 +14,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { MatListModule } from '@angular/material/list';
     FlexLayoutModule,
     MatDividerModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
   ],
   exports: [
     MenuComponent

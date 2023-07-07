@@ -1,63 +1,81 @@
-<div class="logo">
-  <div class="medicine"><img src="./assets/Medicine.svg" alt="Medicine"></div>
-  <div class="vector1"><img src="./assets/Vector1.svg" alt="Vector1"></div>
-  <div class="vector2"><img src="./assets/Vector2.svg" alt="Vector2"></div>
+<div [@pageTransition]="animationName">
+  <div class="logo">
+    <div class="medicine"><img src="./assets/Medicine.svg" alt="Medicine"></div>
+    <div class="vector1"><img src="./assets/Vector1.svg" alt="Vector1"></div>
+    <div class="vector2"><img src="./assets/Vector2.svg" alt="Vector2"></div>
+  </div>
+
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title class="title">
+        {{ estahCadastrando ? "Cadastro de Paciente" : "Edição de Paciente" }}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form #formPaciente="ngForm" (ngSubmit)="manter()" class="form-container">
+        <div class="input-group">
+          <mat-form-field>
+            <input matInput placeholder="Nome" [(ngModel)]="pacienteCadastrado.nome" name="nome" required />
+            <mat-error *ngIf="formPaciente.controls['nome'].invalid && (formPaciente.controls['nome'].dirty || formPaciente.controls['nome'].touched)">
+              Nome é obrigatório.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Sobrenome" [(ngModel)]="pacienteCadastrado.sobrenome" name="sobrenome" required />
+            <mat-error *ngIf="formPaciente.controls['sobrenome'].invalid && (formPaciente.controls['sobrenome'].dirty || formPaciente.controls['sobrenome'].touched)">
+              Sobrenome é obrigatório.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="CPF" [(ngModel)]="pacienteCadastrado.cpf" name="cpf" required
+            pattern="[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}">
+          <mat-error *ngIf="formPaciente.controls['cpf'].invalid && (formPaciente.controls['cpf'].dirty || formPaciente.controls['cpf'].touched)">
+            CPF inválido. Digite um CPF válido no formato xxx.xxx.xxx-xx.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput type="number" placeholder="Idade" [(ngModel)]="pacienteCadastrado.idade" name="idade" required />
+          <mat-error *ngIf="formPaciente.controls['idade'].invalid && (formPaciente.controls['idade'].dirty || formPaciente.controls['idade'].touched)">
+            Idade é um campo obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="Senha" [(ngModel)]="pacienteCadastrado.senha" name="senha" required />
+          <mat-error *ngIf="formPaciente.controls['senha'].invalid && (formPaciente.controls['senha'].dirty || formPaciente.controls['senha'].touched)">
+            Senha é um campo obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput type="email" placeholder="Email" [(ngModel)]="pacienteCadastrado.email" name="email" required />
+          <mat-error *ngIf="formPaciente.controls['email'].invalid && (formPaciente.controls['email'].dirty || formPaciente.controls['email'].touched)">
+            Email inválido. Digite um email válido.
+          </mat-error>
+        </mat-form-field>  
+
+        <mat-form-field class="full-width">
+          <mat-label>Sexo</mat-label>
+          <mat-select [(ngModel)]="pacienteCadastrado.sexo" name="sexo" required>
+            <mat-option value="Masculino">Masculino</mat-option>
+            <mat-option value="Feminino">Feminino</mat-option>
+            <mat-option value="Não informado">Não informar</mat-option>
+          </mat-select>
+        </mat-form-field>
+    
+        <div class="buttons-container">
+          <button mat-raised-button class="large-button" type="submit" *ngIf="estahCadastrando" [disabled]="formPaciente.invalid">
+            Salvar
+          </button>
+          <button mat-raised-button class="large-button" type="submit" *ngIf="!estahCadastrando" [disabled]="formPaciente.invalid">
+            Atualizar
+          </button>
+          
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card-footer class="nameLogo">MyMeds</mat-card-footer>
+
+  <mat-card class="retangulo2"></mat-card>
 </div>
-
-<mat-card class="card">
-  <mat-card-header>
-    <mat-card-title class="title">
-      {{ estahCadastrando ? "Cadastro de Paciente" : "Edição de Paciente" }}
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form #formPaciente="ngForm" (ngSubmit)="manter()" class="form-container">
-      <div class="input-group">
-        <mat-form-field>
-          <input matInput placeholder="Nome" [(ngModel)]="pacienteCadastrado.nome" name="nome" required />
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Sobrenome" [(ngModel)]="pacienteCadastrado.sobrenome" name="sobrenome"
-          required />
-        </mat-form-field>
-      </div>
-      <mat-form-field class="full-width">
-        <input matInput placeholder="CPF" [(ngModel)]="pacienteCadastrado.cpf" name="cpf" required />
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <input matInput type="idade" placeholder="Idade" [(ngModel)]="pacienteCadastrado.idade" name="idade"/>
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <input matInput type="password" placeholder="Senha" [(ngModel)]="pacienteCadastrado.senha" name="senha"
-        required />
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <input matInput type="email" placeholder="Email" [(ngModel)]="pacienteCadastrado.email" name="email" required />
-      </mat-form-field>
-      <!-- <mat-form-field class="full-width">
-        <input matInput type="date" placeholder="Data de Nascimento" [(ngModel)]="pacienteCadastrado.dataNascimento"
-        name="dataNascimento" required />
-      </mat-form-field> -->
-      <mat-form-field class="full-width">
-        <mat-label>Sexo</mat-label>
-        <mat-select [(ngModel)]="pacienteCadastrado.sexo" name="sexo" required>
-          <mat-option value="Masculino">Masculino</mat-option>
-          <mat-option value="Feminino">Feminino</mat-option>
-        </mat-select>
-      </mat-form-field>
-      
-      <div class="buttons-container">
-        <button mat-raised-button type="submit" *ngIf="estahCadastrando">
-          Salvar
-        </button>
-        <button mat-raised-button type="submit" *ngIf="!estahCadastrando">
-          Atualizar
-        </button>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
-
-<mat-card-footer class="nameLogo">MyMeds</mat-card-footer>
-
-<mat-card class="retangulo2"></mat-card>

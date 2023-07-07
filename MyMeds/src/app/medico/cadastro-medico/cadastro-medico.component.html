@@ -1,3 +1,4 @@
+<div [@pageTransition]="animationName">
 <div class="logo">
   <div class="medicine"><img src="./assets/Medicine.svg" alt="Medicine" /></div>
   <div class="vector1"><img src="./assets/Vector1.svg" alt="Vector1" /></div>
@@ -13,54 +14,60 @@
   <mat-card-content>
     <form #formMedico="ngForm" (ngSubmit)="manter()" class="form-container">
       <div class="input-group">
-        <mat-form-field>
-          <input
-            matInput
-            placeholder="Nome"
-            [(ngModel)]="medicoCadastrado.nome"
-            name="nome"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field>
-          <input
-            matInput
-            placeholder="Sobrenome"
-            [(ngModel)]="medicoCadastrado.sobrenome"
-            name="sobrenome"
-            required
-          />
-        </mat-form-field>
+        <div class="input-group">
+          <mat-form-field>
+            <input matInput placeholder="Nome" [(ngModel)]="medicoCadastrado.nome" name="nome" required />
+            <mat-error *ngIf="formMedico.controls['nome'].invalid && (formMedico.controls['nome'].dirty || formMedico.controls['nome'].touched)">
+              Nome é obrigatório.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Sobrenome" [(ngModel)]="medicoCadastrado.sobrenome" name="sobrenome" required />
+            <mat-error *ngIf="formMedico.controls['sobrenome'].invalid && (formMedico.controls['sobrenome'].dirty || formMedico.controls['sobrenome'].touched)">
+              Sobrenome é obrigatório.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
       </div>
+
       <mat-form-field class="full-width">
-        <input
-          matInput
-          placeholder="CRM"
-          [(ngModel)]="medicoCadastrado.crm"
-          name="crm"
-          required
-        />
+        <input matInput placeholder="CRM" [(ngModel)]="medicoCadastrado.crm" name="crm" required [pattern]="crmPattern" />
+        <mat-error *ngIf="formMedico.controls['crm'].invalid && (formMedico.controls['crm'].dirty || formMedico.controls['crm'].touched)">
+          O CRM é obrigatório e deve ter um formato válido.
+        </mat-error>
       </mat-form-field>
+
       <mat-form-field class="full-width">
-        <input
-          matInput
-          type="email"
-          placeholder="Email"
-          [(ngModel)]="medicoCadastrado.email"
-          name="email"
-          required
-        />
+        <input matInput type="number" placeholder="Idade" [(ngModel)]="medicoCadastrado.idade" name="idade" required />
+        <mat-error *ngIf="formMedico.controls['idade'].invalid && (formMedico.controls['idade'].dirty || formMedico.controls['idade'].touched)">
+          A idade é obrigatória.
+        </mat-error>
       </mat-form-field>
+
       <mat-form-field class="full-width">
-        <input
-          matInput
-          type="password"
-          placeholder="Senha"
-          [(ngModel)]="medicoCadastrado.senha"
-          name="senha"
-          required
-        />
+        <input matInput placeholder="Especialidade" [(ngModel)]="medicoCadastrado.especialidade" name="espec" required />
+        <mat-error *ngIf="formMedico.controls['espec'].invalid && (formMedico.controls['espec'].dirty || formMedico.controls['espec'].touched)">
+          Especialidade é um campo obrigatório.
+        </mat-error>
       </mat-form-field>
+      
+      <mat-form-field class="full-width">
+        <input matInput type="email" placeholder="Email" [(ngModel)]="medicoCadastrado.email" name="email" required email />
+        <mat-error *ngIf="formMedico.controls['email'].invalid && (formMedico.controls['email'].dirty || formMedico.controls['email'].touched)">
+          O email é obrigatório e deve ter um formato válido.
+        </mat-error>
+      </mat-form-field>
+      <!-- <mat-form-field class="full-width">
+        <input matInput type="email" placeholder="Email" [(ngModel)]="medicoCadastrado.email" name="email" required />
+      </mat-form-field> -->
+      <mat-form-field class="full-width">
+        <input matInput type="password" placeholder="Senha" [(ngModel)]="medicoCadastrado.senha" name="senha" required minlength="6" />
+        <mat-error *ngIf="formMedico.controls['senha'].invalid && (formMedico.controls['senha'].dirty || formMedico.controls['senha'].touched)">
+          Senha inválida. A senha deve ter pelo menos 6 caracteres.
+        </mat-error>
+      </mat-form-field>
+      
       <mat-form-field class="full-width">
         <mat-label>Sexo</mat-label>
         <mat-select [(ngModel)]="medicoCadastrado.sexo" name="sexo" required>
@@ -70,10 +77,10 @@
       </mat-form-field>
 
       <div class="buttons-container">
-        <button mat-raised-button type="submit" *ngIf="estahCadastrando">
+        <button mat-raised-button class="large-button" type="submit" *ngIf="estahCadastrando" [disabled]="formMedico.invalid">
           Salvar
         </button>
-        <button mat-raised-button type="submit" *ngIf="!estahCadastrando">
+        <button mat-raised-button class="large-button" type="submit" *ngIf="!estahCadastrando" [disabled]="formMedico.invalid">
           Atualizar
         </button>
       </div>
@@ -84,3 +91,4 @@
 <mat-card class="retangulo2"></mat-card>
 
 <mat-card-footer class="nameLogo">MyMeds</mat-card-footer>
+</div>

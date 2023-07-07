@@ -7,29 +7,29 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MedicoService {
-  URL_pacientes = 'http://localhost:3000/pacientes';
+  URL_medicos = 'http://localhost:3000/medicos';
   constructor(private httpClient: HttpClient) {}
 
   listar(): Observable<Medico[]> {
-    return this.httpClient.get<Medico[]>(this.URL_pacientes);
+    return this.httpClient.get<Medico[]>(this.URL_medicos);
   }
 
-  inserir(paciente: Medico): Observable<Medico> {
-    return this.httpClient.post<Medico>(this.URL_pacientes, paciente);
+  inserir(medico: Medico): Observable<Medico> {
+    return this.httpClient.post<Medico>(this.URL_medicos, medico);
   }
 
-  atualizar(paciente: Medico): Observable<Medico> {
+  atualizar(medico: Medico): Observable<Medico> {
     return this.httpClient.put<Medico>(
-      `${this.URL_pacientes}/${paciente.id}`,
-      paciente
+      `${this.URL_medicos}/${medico.id}`,
+      medico
     );
   }
 
   apagar(id: string): Observable<Medico> {
-    return this.httpClient.delete<Medico>(`${this.URL_pacientes}/${id}`);
+    return this.httpClient.delete<Medico>(`${this.URL_medicos}/${id}`);
   }
 
   pesquisarPorId(id: string): Observable<Medico> {
-    return this.httpClient.get<Medico>(`${this.URL_pacientes}/${id}`);
-  }
+    return this.httpClient.get<Medico>(`${this.URL_medicos}/${id}`);
+  }
 }

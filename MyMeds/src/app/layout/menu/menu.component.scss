@@ -7,23 +7,14 @@
   background-color: #3B655B;
   padding: 10px;
   transition: transform 0.3s;
-  z-index: 9999;
-}
-
-.menu-toggle  {
-  color: #FFFFFF;
+  z-index: 1000;
 }
 
 .menu-list {
   display: flex;
   flex-direction: column;
-  width: 350px;
   padding: 0;
   margin: 0;
-  overflow: hidden;
-  height: 0;
-  transition: height 0.3s;
-  background-color: #FFFFFF;
 }
 
 .menu-item {
@@ -33,34 +24,27 @@
   color: #3B655B;
   text-decoration: none;
   transition: background-color 0.3s;
+  position: relative;
 }
 
 .menu-item:hover {
   background-color: #84f0d6;
 }
 
-.menu-list.open {
-  height: auto;
+.menu-item mat-icon {
+  margin-right: 8px;
 }
 
-.menu-buttons {
-  display: flex;
-  flex-direction: column;
-  margin-top: auto;
+.divider {
+  height: 1px;
+  background-color: #FFFFFF;
+  margin: 8px 0;
 }
 
-.menu-button-social,
-.menu-button-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  width: 50px;
-  margin-bottom: 10px;
-}
-
-.social-icon,
-.info-icon {
+.menu-icon {
   color: #FFFFFF;
-  font-size: 24px;
+}
+
+.menu-item .mat-tooltip {
+  z-index: 1000; /* Ajuste o valor de acordo com sua necessidade (maior que z-index da barra lateral) */
 }

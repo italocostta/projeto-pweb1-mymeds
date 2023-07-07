@@ -1,21 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Paciente } from 'src/app/shared/modelo/paciente';
 import { PacienteService } from 'src/app/shared/services/paciente.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PacienteFirestoreService } from 'src/app/shared/services/paciente-firestore.service';
+import { pageTransitionAnimation } from 'src/app/animations/page-transition.animation';
 
 @Component({
   selector: 'app-listar-paciente',
   templateUrl: './listar-paciente.component.html',
   styleUrls: ['./listar-paciente.component.scss'],
+  animations: [pageTransitionAnimation],
 })
 export class ListarPacienteComponent implements OnInit {
   pacientes: Paciente[] = [];
   pacientesMaioresIdade = false;
+  animationName: string = 'ListarPaciente';
 
-  constructor(private PacienteFirestoreService: PacienteFirestoreService) {}
+  constructor(private route: ActivatedRoute, private PacienteFirestoreService: PacienteFirestoreService) {}
 
   ngOnInit(): void {
     this.obterPacientes();
+    this.animationName = this.route.snapshot.data['animation'];
   }
 
   obterPacientes(): void {

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule ,FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
@@ -20,18 +20,24 @@ import { FirestoreModule } from './firestore/firestore.module';
 import { MensagemService } from './shared/services/mensagem.service';
 import { IMensagem } from './shared/modelo/IMensagem';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { HomePageComponent } from './home-page/home-page.component';
+import { PipesModule } from './pipes/pipes.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomePageComponent,
+    
+    
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatButtonModule,
@@ -46,7 +52,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSnackBarModule,
     MedicoModule,
     PacienteModule,
-    LayoutModule
+    LayoutModule,
+    PipesModule,
   ],
   providers: [
     {
