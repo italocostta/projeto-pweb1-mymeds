@@ -1,13 +1,35 @@
 export class Medico {
-    constructor(
-      public nome: string,
-      public sobrenome: string,
-      public senha: string,
-      public email: string,
-      public especialidade: string,
-      public sexo: string,
-      public crm: string,
-      public idade?: number,
-      public id?: string
-    ) {}
+  id?: number;
+  nome: string;
+  sobrenome: string;
+  senha: string;
+  email: string;
+  especialidade: string;
+  sexo: string;
+  crm: string;
+  idade: number;
+
+  constructor(
+    id?: number,
+    medico: Medico = {
+      nome: '',
+      sobrenome: '',
+      senha: '',
+      email: '',
+      sexo: '',
+      crm: '',
+      idade: 0,
+      especialidade: '',
+    }
+  ) {
+    this.id = id;
+    this.nome = medico.nome;
+    this.sobrenome = medico.sobrenome;
+    this.senha = medico.senha;
+    this.email = medico.email;
+    this.sexo = medico.sexo;
+    this.crm = medico.crm;
+    this.idade = medico.idade;
+    this.especialidade = medico.especialidade;
   }
+}

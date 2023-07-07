@@ -16,7 +16,7 @@ export class ListarPacienteComponent implements OnInit {
   pacientesMaioresIdade = false;
   animationName: string = 'ListarPaciente';
 
-  constructor(private route: ActivatedRoute, private PacienteFirestoreService: PacienteFirestoreService) {}
+  constructor(private route: ActivatedRoute, private PacienteService: PacienteService) {}
 
   ngOnInit(): void {
     this.obterPacientes();
@@ -24,7 +24,7 @@ export class ListarPacienteComponent implements OnInit {
   }
 
   obterPacientes(): void {
-    this.PacienteFirestoreService.listar().subscribe(
+    this.PacienteService.listar().subscribe(
       (pacientesRetornados) => {
         this.pacientes = pacientesRetornados;
         console.log(this.pacientes);
@@ -37,7 +37,7 @@ export class ListarPacienteComponent implements OnInit {
 
   excluir(pacienteARemover: Paciente): void {
     if (pacienteARemover.id) {
-      this.PacienteFirestoreService.apagar(pacienteARemover.id).subscribe(() => {
+      this.PacienteService.apagar(pacienteARemover.id).subscribe(() => {
         const index = this.pacientes.findIndex(
           (paciente) => paciente.id === pacienteARemover.id
         );
@@ -50,27 +50,27 @@ export class ListarPacienteComponent implements OnInit {
 
   inserir(paciente: Paciente): void {
     if (paciente != null) {
-      this.PacienteFirestoreService.inserir(paciente).subscribe((pacienteInserido) => {
+      this.PacienteService.inserir(paciente).subscribe((pacienteInserido) => {
         this.pacientes.push(pacienteInserido as Paciente);
       });
     }
   }
 
-  atualizar(paciente: Paciente): void {
-    if (paciente != null) {
-      this.PacienteFirestoreService.atualizar(paciente).subscribe(() => {
-        this.obterPacientes();
-      });
-    }
-  }
+  // atualizar(paciente: Paciente): void {
+  //   if (paciente != null) {
+  //     this.PacienteService.atualizar(paciente).subscribe(() => {
+  //       this.obterPacientes();
+  //     });
+  //   }
+  // }
 
-  atualizarLista(): void {
-    if (this.pacientesMaioresIdade) {
-      this.PacienteFirestoreService.listarMaioresDeIdade().subscribe(
-        pacientes => this.pacientes = pacientes);
-    }else {
-      this.PacienteFirestoreService.listar().subscribe(
-        pacientes => this.pacientes = pacientes);
-    }
-  }
+  // atualizarLista(): void {
+  //   if (this.pacientesMaioresIdade) {
+  //     this.PacienteService.listarMaioresDeIdade().subscribe(
+  //       pacientes => this.pacientes = pacientes);
+  //   }else {
+  //     this.PacienteService.listar().subscribe(
+  //       pacientes => this.pacientes = pacientes);
+  //   }
+  // }
 }

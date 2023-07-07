@@ -29,16 +29,16 @@ export class CadastroMedicoComponent implements OnInit {
     private mensagemService: IMensagem,
     private rotaAtual: ActivatedRoute,
     private roteador: Router,
-    private MedicoFirestoreService: MedicoFirestoreService,
+    private medicoService: MedicoService,
     private formBuilder: FormBuilder,
     
   ) {
-    this.medicoCadastrado = new Medico('', '', '', '', '', '', '', undefined);
+    this.medicoCadastrado = new Medico();
     const idParaEdicao = this.rotaAtual.snapshot.paramMap.get('id');
     if (idParaEdicao) {
       // editando
-      this.MedicoFirestoreService
-        .pesquisarPorId(idParaEdicao)
+      this.medicoService
+        .pesquisarPorId(Number(idParaEdicao))
         .subscribe((medico) => {
           this.medicoCadastrado = medico;
         });
@@ -64,7 +64,7 @@ export class CadastroMedicoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.MedicoFirestoreService.listar().subscribe((medicosRetornados) => {
+    this.medicoService.listar().subscribe((medicosRetornados) => {
       this.medicos = medicosRetornados;
     });
     this.IdMedicoEditado = this.rotaAtual.snapshot.paramMap.get('id');
@@ -83,14 +83,14 @@ export class CadastroMedicoComponent implements OnInit {
       }
 
       // ID único, prosseguir com a inserção
-      this.MedicoFirestoreService
+      this.medicoService
         .inserir(this.medicoCadastrado)
         .subscribe((medico) => {
           this.medicos.push(medico as Medico);
           this.mensagemService.sucesso('Medico cadastrado com sucesso!');
     });
     } else {
-      this.MedicoFirestoreService
+      this.medicoService
         .atualizar(this.medicoCadastrado)
         .subscribe((medico) => {
           this.mensagemService.sucesso('Medico atualizado com sucesso!');
@@ -102,7 +102,7 @@ export class CadastroMedicoComponent implements OnInit {
 
   atualizar(): void {
     if (this.medicoCadastrado != null) {
-      this.MedicoFirestoreService
+      this.medicoService
         .atualizar(this.medicoCadastrado)
         .subscribe((medico) => {
           this.roteador.navigate(['listagemmedicos']);

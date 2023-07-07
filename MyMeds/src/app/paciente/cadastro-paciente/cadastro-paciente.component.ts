@@ -26,15 +26,15 @@ export class CadastroPacienteComponent implements OnInit {
   constructor(
     private rotaAtual: ActivatedRoute,
     private roteador: Router,
-    private PacienteFirestoreService: PacienteFirestoreService,
+    private pacienteService: PacienteService,
     private formBuilder: FormBuilder,
   ) {
-    this.pacienteCadastrado = new Paciente('', '', '', '', '', '', undefined);
+    this.pacienteCadastrado = new Paciente();
     const idParaEdicao = this.rotaAtual.snapshot.paramMap.get('id');
     if (idParaEdicao) {
       // editando
-      this.PacienteFirestoreService
-        .pesquisarPorId(idParaEdicao)
+      this.pacienteService
+        .pesquisarPorId(Number(idParaEdicao))
         .subscribe((paciente) => {
           this.pacienteCadastrado = paciente;
         });
@@ -58,7 +58,7 @@ export class CadastroPacienteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.PacienteFirestoreService.listar().subscribe((pacientesRetornados) => {
+    this.pacienteService.listar().subscribe((pacientesRetornados) => {
       this.pacientes = pacientesRetornados;
     });
     this.IdPacienteEditado = this.rotaAtual.snapshot.paramMap.get('id');
@@ -77,13 +77,13 @@ export class CadastroPacienteComponent implements OnInit {
       }
 
       // ID único, prosseguir com a inserção
-      this.PacienteFirestoreService
+      this.pacienteService
         .inserir(this.pacienteCadastrado)
         .subscribe((paciente) => {
           this.pacientes.push(paciente as Paciente);
     });
     } else {
-      this.PacienteFirestoreService
+      this.pacienteService
         .atualizar(this.pacienteCadastrado)
         .subscribe((paciente) => {
           // Atualização bem-sucedida
@@ -95,7 +95,7 @@ export class CadastroPacienteComponent implements OnInit {
 
   atualizar(): void {
     if (this.pacienteCadastrado != null) {
-      this.PacienteFirestoreService
+      this.pacienteService
         .atualizar(this.pacienteCadastrado)
         .subscribe((paciente) => {
           this.roteador.navigate(['listagempacientes']);

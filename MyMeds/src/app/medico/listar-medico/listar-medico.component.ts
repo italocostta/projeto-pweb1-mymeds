@@ -15,7 +15,7 @@ export class ListarMedicoComponent implements OnInit {
   medicosMaioresIdade = false;
   animationName: string = 'ListarMedico';
 
-  constructor(private rotaAtual: ActivatedRoute, private MedicoFirestoreService: MedicoFirestoreService) {}
+  constructor(private rotaAtual: ActivatedRoute, private MedicoService: MedicoService) {}
 
   ngOnInit(): void {
     this.obterMedicos();
@@ -23,7 +23,7 @@ export class ListarMedicoComponent implements OnInit {
   }
 
   obterMedicos(): void {
-    this.MedicoFirestoreService.listar().subscribe(
+    this.MedicoService.listar().subscribe(
       (medicosRetornados) => {
         this.medicos = medicosRetornados;
         console.log(this.medicos);
@@ -36,7 +36,7 @@ export class ListarMedicoComponent implements OnInit {
 
   excluir(medicoARemover: Medico): void {
     if (medicoARemover.id) {
-      this.MedicoFirestoreService.apagar(medicoARemover.id).subscribe(() => {
+      this.MedicoService.apagar(medicoARemover.id).subscribe(() => {
         const index = this.medicos.findIndex(
           (medico) => medico.id === medicoARemover.id
         );
@@ -49,7 +49,7 @@ export class ListarMedicoComponent implements OnInit {
 
   inserir(medico: Medico): void {
     if (medico != null) {
-      this.MedicoFirestoreService.inserir(medico).subscribe((medicoInserido) => {
+      this.MedicoService.inserir(medico).subscribe((medicoInserido) => {
         this.medicos.push(medicoInserido as Medico);
       });
     }
@@ -57,7 +57,7 @@ export class ListarMedicoComponent implements OnInit {
 
   atualizar(medico: Medico): void {
     if (medico != null) {
-      this.MedicoFirestoreService.atualizar(medico).subscribe(() => {
+      this.MedicoService.atualizar(medico).subscribe(() => {
         this.obterMedicos();
       });
     }
@@ -68,7 +68,7 @@ export class ListarMedicoComponent implements OnInit {
     //   this.MedicoFirestoreService.listarMaioresDeIdade().subscribe(
     //     medicos => this.medicos = medicos);
     // }else {
-      this.MedicoFirestoreService.listar().subscribe(
+      this.MedicoService.listar().subscribe(
         medicos => this.medicos = medicos);
     
   }

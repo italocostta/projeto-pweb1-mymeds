@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PacienteService {
-  URL_pacientes = 'http://localhost:3000/pacientes';
+  URL_pacientes = 'http://localhost:8080/pacientes';
   constructor(private httpClient: HttpClient) {}
 
   listar(): Observable<Paciente[]> {
@@ -25,11 +25,17 @@ export class PacienteService {
     );
   }
 
-  apagar(id: string): Observable<Paciente> {
+  apagar(id: number): Observable<Paciente> {
     return this.httpClient.delete<Paciente>(`${this.URL_pacientes}/${id}`);
   }
 
-  pesquisarPorId(id: string): Observable<Paciente> {
+  pesquisarPorId(id: number): Observable<Paciente> {
     return this.httpClient.get<Paciente>(`${this.URL_pacientes}/${id}`);
   }
+
+  // listarMaioresDeIdade(): Observable<Paciente[]> {
+  //   let pacientesMaioresIdade: AngularFirestoreCollection<Paciente>;
+  //   pacientesMaioresIdade = this.afs.collection(this.NOME_COLECAO, ref => ref.where('idade', '>', '17'));
+  //   return pacientesMaioresIdade.valueChanges();
+  // }
 }

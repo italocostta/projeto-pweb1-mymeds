@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MedicoService {
-  URL_medicos = 'http://localhost:3000/medicos';
+  URL_medicos = 'http://localhost:8080/medicos';
   constructor(private httpClient: HttpClient) {}
 
   listar(): Observable<Medico[]> {
@@ -25,11 +25,11 @@ export class MedicoService {
     );
   }
 
-  apagar(id: string): Observable<Medico> {
+  apagar(id: number): Observable<Medico> {
     return this.httpClient.delete<Medico>(`${this.URL_medicos}/${id}`);
   }
 
-  pesquisarPorId(id: string): Observable<Medico> {
+  pesquisarPorId(id: number): Observable<Medico> {
     return this.httpClient.get<Medico>(`${this.URL_medicos}/${id}`);
   }
 }

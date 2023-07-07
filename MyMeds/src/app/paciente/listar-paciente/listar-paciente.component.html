@@ -1,8 +1,8 @@
 <div [@pageTransition]="animationName">
   <div class="patient-list" fxLayout="row" fxLayoutGap="">
-    <mat-slide-toggle class="maiores-toggle" [(ngModel)]="pacientesMaioresIdade" (change)="atualizarLista()">
+    <!-- <mat-slide-toggle class="maiores-toggle" [(ngModel)]="pacientesMaioresIdade" (change)="atualizarLista()">
       Mostrar somente maiores de idade
-    </mat-slide-toggle>
+    </mat-slide-toggle> -->
 
     <div class="paciente-card" *ngFor="let paciente of pacientes">
       <mat-card class="patient-card">
@@ -14,7 +14,6 @@
           <p class="card-text">Sobrenome: {{ paciente.sobrenome }}</p>
           <p class="card-text">Email: {{ paciente.email }}</p>
           <p class="card-text">Idade: {{ paciente.idade }}</p>
-          <!-- <p class="card-text">Data de Nascimento: {{ paciente.dataNascimento }}</p> -->
           <p class="card-text">Sexo: {{ paciente.sexo }}</p>
           <p class="card-text">CPF: {{ paciente.cpf | cpf}}</p>
         </mat-card-content>
