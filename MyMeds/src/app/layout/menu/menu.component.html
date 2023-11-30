@@ -1,4 +1,4 @@
-<div class="menu-container">
+<!-- <div class="menu-container">
   <mat-nav-list class="menu-list">
     <a [routerLink]="['/']" (click)="closeMenu()" mat-list-item class="menu-item" matTooltip="Home">
       <mat-icon class="menu-icon">home</mat-icon>
@@ -21,4 +21,15 @@
       <span>Listar Médicos</span>
     </a>
   </mat-nav-list>
-</div>
+</div> -->
+
+<mat-drawer-container class="menu-container">
+  <mat-drawer opened="true">
+    <mat-nav-list class="menu-list">
+      <mat-list-item [routerLink]="['/']" matTooltip="Home">
+        <mat-icon class="menu-icon">home</mat-icon>
+        <span>Home</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+</mat-drawer-container>
